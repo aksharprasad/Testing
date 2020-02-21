@@ -1,31 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace ProseTutorial
 {
     public static class Semantics
     {
-        public static string Substring(string v, int start, int end)
+        public static uint? Add(Dictionary<uint?, uint?> v, uint? op1, uint? op2)
         {
-            return v.Substring(start, end - start);
+            return op1 + op2;
         }
 
-        public static int? AbsPos(string v, int k)
+        public static uint? Element(Dictionary<uint?, uint?> v, int k)
         {
-            return k > 0 ? k - 1 : v.Length + k + 1;
+            if (k >= v.Count)
+                return null;
+            return v.Keys.ElementAt(k);
         }
 
-        public static int? RelPos(string v, Tuple<Regex, Regex> rr)
+        public static uint? Multiply(Dictionary<uint?, uint?> v, uint? op1, uint? op2)
         {
-            Regex left = rr.Item1;
-            Regex right = rr.Item2;
-            MatchCollection rightMatches = right.Matches(v);
-            MatchCollection leftMatches = left.Matches(v);
-            foreach (Match leftMatch in leftMatches)
-            foreach (Match rightMatch in rightMatches)
-                if (rightMatch.Index == leftMatch.Index + leftMatch.Length)
-                    return leftMatch.Index + leftMatch.Length;
-            return null;
+            return op1 * op2;
         }
     }
 }

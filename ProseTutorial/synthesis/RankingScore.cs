@@ -11,14 +11,20 @@ namespace ProseTutorial
         {
         }
 
-        [FeatureCalculator(nameof(Semantics.Substring))]
-        public static double Substring(double v, double start, double end)
+        [FeatureCalculator(nameof(Semantics.Add))]
+        public static double Add(double v, double start, double end)
         {
             return start * end;
         }
 
-        [FeatureCalculator(nameof(Semantics.AbsPos))]
-        public static double AbsPos(double v, double k)
+        [FeatureCalculator(nameof(Semantics.Multiply))]
+        public static double Multiply(double v, double start, double end)
+        {
+            return start * end;
+        }
+
+        [FeatureCalculator(nameof(Semantics.Element))]
+        public static double Element(double v, double k)
         {
             return k;
         }
@@ -26,19 +32,8 @@ namespace ProseTutorial
         [FeatureCalculator("k", Method = CalculationMethod.FromLiteral)]
         public static double K(int k)
         {
-            return 1.0 / Math.Abs(k);
+            return k;
         }
 
-        [FeatureCalculator(nameof(Semantics.RelPos))]
-        public static double RelPos(double x, double rr)
-        {
-            return rr;
-        }
-
-        [FeatureCalculator("rr", Method = CalculationMethod.FromLiteral)]
-        public static double RR(Tuple<Regex, Regex> tuple)
-        {
-            return 1;
-        }
     }
 }

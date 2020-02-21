@@ -5,11 +5,8 @@ language Substring;
 
 @complete feature double Score = ProseTutorial.RankingScore;
 
-@input string v;
+@input Dictionary<uint?,uint?> v;
 
-@start string program := Substring(v, pos, pos);
-
-int pos := AbsPos(v, k) | RelPos(v, rr);
+@start uint? program := Multiply(v,@recurse[7] program,@recurse[7] program) | Add(v,@recurse[7] program,@recurse[7] program) | Element(v,k);
 
 int k; 
-Tuple<Regex,Regex> rr; 
